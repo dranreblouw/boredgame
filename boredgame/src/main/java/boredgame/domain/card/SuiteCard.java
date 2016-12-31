@@ -30,4 +30,22 @@ public abstract class SuiteCard<T extends ISuiteDefinition> extends AbstractCard
     public T getSuiteDefinition() {
         return suiteDefinition;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SuiteCard<?> suiteCard = (SuiteCard<?>) o;
+
+        if (!getSuiteDefinition().equals(suiteCard.getSuiteDefinition())) return false;
+        return getCardNumber().equals(suiteCard.getCardNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getSuiteDefinition().hashCode();
+        result = 31 * result + getCardNumber().hashCode();
+        return result;
+    }
 }

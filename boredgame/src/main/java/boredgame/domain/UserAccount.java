@@ -1,5 +1,7 @@
 package boredgame.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +10,13 @@ import java.util.List;
  */
 public class UserAccount {
 
+    @NotEmpty(message = "{UserAccount.firstName.NotEmpty}")
     private String firstName;
+    @NotEmpty(message = "{UserAccount.lastName.NotEmpty}")
     private String lastName;
     private String id;
 
+    @NotEmpty(message = "{UserAccount.userName.NotEmpty}")
     private String userName;
 
     private List<String> roles = new ArrayList<>();

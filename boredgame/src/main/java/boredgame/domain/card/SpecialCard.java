@@ -14,4 +14,21 @@ public abstract class SpecialCard<T extends ISpecialCardDefinition> extends Abst
     public T getSpecialCardDefiniition() {
         return specialCardDefiniition;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SpecialCard<?> that = (SpecialCard<?>) o;
+
+        return getSpecialCardDefiniition().equals(that.getSpecialCardDefiniition());
+    }
+
+    @Override
+    public int hashCode() {
+        return getSpecialCardDefiniition().hashCode();
+    }
+
+
 }
