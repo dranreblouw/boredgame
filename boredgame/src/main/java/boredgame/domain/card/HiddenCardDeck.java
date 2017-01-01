@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 /**
  * Created by BERNARD7 on 31/12/2016.
  */
-public class HiddenCardDeck<T extends IAbstractCard> {
+public class HiddenCardDeck<T extends IAbstractCard<D>, D extends ICardDefinition> {
 
-    private List<T> cardDeck = new LinkedList<>();
+    private Queue<T> cardDeck = new LinkedList<>();
 
     public void addToDesk(T card) {
         Objects.nonNull(card);
@@ -24,22 +24,39 @@ public class HiddenCardDeck<T extends IAbstractCard> {
         cardDeck.addAll(split.get(Boolean.FALSE));
     }
 
-    public Optional<T> removeFromDeck() {
+    public Optional<T> removeFromTopDeck() {
         Optional<T> maybeCard = Optional.ofNullable(cardDeck.iterator().next());
-        maybeCard.ifPresent(card -> cardDeck.iterator().remove());
+        maybeCard.ifPresent(card -> cardDeck.poll());
         return maybeCard;
     }
 
-    public T viewLastAddedCard() {
-        if (!cardDeck.isEmpty()) {
-            return SerializationUtils.clone(cardDeck.get(cardDeck.size() - 1));
-        } else {
-            return null;
+    //package protected
+    boolean removeFromDeck(D cardDefinition) {
+        final Iterator<T> iterator = cardDeck.iterator();
+        while (iterator.hasNext()) {
+            T playableCard = iterator.next();
+            if (playableCard.getCardDefinition().equals(cardDefinition)) {
+                iterator.remove();
+                return true;
+            }
         }
+
+        return false;
     }
 
-    public List<T> viewDeck() {
-        return Collections.unmodifiableList(cardDeck);
+    public Optional<T> peekTopOfDeck() {
+        return Optional.ofNullable(SerializationUtils.clone(cardDeck.peek()));
+    }
+
+    public void shuffleCards() {
+        List<T> tempList = new ArrayList<>(cardDeck);
+        Collections.shuffle(tempList);
+        cardDeck.clear();
+        cardDeck.addAll(tempList);
+    }
+
+    public Collection<T> viewDeck() {
+        return Collections.unmodifiableCollection(cardDeck);
     }
 
     public boolean isDeskEmpty() {
@@ -50,7 +67,7 @@ public class HiddenCardDeck<T extends IAbstractCard> {
         return cardDeck.size();
     }
 
-    protected List<T> getCardDeck() {
-        return cardDeck;
+    public Collection<T> getCardDeck() {
+        return Collections.unmodifiableCollection(cardDeck);
     }
 }

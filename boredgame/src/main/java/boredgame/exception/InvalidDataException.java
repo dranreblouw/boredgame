@@ -5,7 +5,12 @@ package boredgame.exception;
  */
 public class InvalidDataException extends RuntimeException {
 
+
     public InvalidDataException(String message) {
         super(message);
+    }
+
+    public InvalidDataException(String message, String[] formatArgs) {
+        super(String.format(message, formatArgs));
     }
 }

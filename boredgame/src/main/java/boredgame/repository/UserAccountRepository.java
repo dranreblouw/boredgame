@@ -1,6 +1,6 @@
 package boredgame.repository;
 
-import boredgame.domain.UserAccount;
+import boredgame.domain.users.UserAccount;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

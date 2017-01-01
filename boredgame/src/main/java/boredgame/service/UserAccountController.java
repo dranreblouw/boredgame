@@ -1,6 +1,6 @@
 package boredgame.service;
 
-import boredgame.domain.UserAccount;
+import boredgame.domain.users.UserAccount;
 import boredgame.exception.ErrorResponse;
 import boredgame.exception.InvalidDataException;
 import boredgame.repository.UserAccountRepository;

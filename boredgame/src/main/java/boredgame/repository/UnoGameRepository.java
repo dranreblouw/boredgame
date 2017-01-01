@@ -1,6 +1,6 @@
 package boredgame.repository;
 
-import boredgame.domain.uno.UnoGame;
+import boredgame.domain.uno.internal.UnoGame;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

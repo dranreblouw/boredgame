@@ -1,9 +1,9 @@
-package boredgame.domain;
+package boredgame.domain.users;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by BERNARD7 on 31/12/2016.
@@ -19,7 +19,7 @@ public class UserAccount {
     @NotEmpty(message = "{UserAccount.userName.NotEmpty}")
     private String userName;
 
-    private List<String> roles = new ArrayList<>();
+    private Set<String> roles = new HashSet<>();
 
     public String getFirstName() {
         return firstName;
@@ -53,11 +53,11 @@ public class UserAccount {
         this.userName = userName;
     }
 
-    public List<String> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 }

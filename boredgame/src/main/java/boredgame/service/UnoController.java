@@ -1,9 +1,10 @@
 package boredgame.service;
 
-import boredgame.domain.uno.UnoGame;
+import boredgame.domain.uno.internal.UnoGame;
 import boredgame.repository.UnoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,11 +17,16 @@ public class UnoController {
     @Autowired
     private UnoGameRepository unoGameRepository;
 
-    @RequestMapping("new")
-    public UnoGame newGame()
-    {
+    @RequestMapping(value = "new", method = RequestMethod.POST)
+    public UnoGame newGame() {
 
+        //UnoCardDeck unoCardDeck = new UnoGameService().getObject();
+
+
+        //unoGameRepository.save(game);
+        return null;
     }
+
 
 
 }
