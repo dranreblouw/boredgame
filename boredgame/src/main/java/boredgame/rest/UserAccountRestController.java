@@ -1,14 +1,14 @@
-package boredgame.service;
+package boredgame.rest;
 
 import boredgame.domain.users.UserAccount;
-import boredgame.exception.ErrorResponse;
 import boredgame.exception.InvalidDataException;
 import boredgame.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/users")
-public class UserAccountController {
+public class UserAccountRestController extends AbstractRestController {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
@@ -33,7 +33,7 @@ public class UserAccountController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public UserAccount showUserForm(@PathVariable("id") UserAccount user) {
+    public UserAccount find(@PathVariable("id") UserAccount user) {
         return user;
     }
 
@@ -41,14 +41,5 @@ public class UserAccountController {
     public List<UserAccount> findAll() {
         return userAccountRepository.findAll();
     }
-
-    @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
-        ErrorResponse error = new ErrorResponse();
-        error.setErrorCode(HttpStatus.PRECONDITION_FAILED.value());
-        error.setMessage(ex.getMessage());
-        return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
-    }
-
 
 }

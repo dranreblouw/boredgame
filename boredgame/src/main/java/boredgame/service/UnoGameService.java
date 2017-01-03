@@ -1,4 +1,4 @@
-package boredgame.domain.uno;
+package boredgame.service;
 
 import boredgame.domain.uno.internal.UnoGame;
 import boredgame.domain.uno.internal.UnoPlayer;

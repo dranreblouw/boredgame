@@ -16,7 +16,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.0.BUILD-SNAPSHOT</version>
     </parent>
-    <!-- (you don't need this if you are using a .RELEASE version) -->
+    <!-- Spring Repo since we're using SNAPSHOT releases -->
     <repositories>
         <repository>
             <id>spring-snapshots</id>
@@ -90,11 +90,23 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+        <!-- Faster boot times -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- Spring Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>com.stormpath.spring</groupId>
+            <artifactId>stormpath-default-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -105,4 +117,15 @@
             </plugin>
         </plugins>
     </build>
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>springloaded</artifactId>
+                <version>1.2.0.RELEASE</version>
+            </dependency>
+        </dependencies>
+    </plugin>
 </project>

@@ -1,6 +1,8 @@
-package boredgame.config;
+package boredgame;
 
-import boredgame.service.UserAccountController;
+import boredgame.rest.GameLobbyRestController;
+import boredgame.rest.UnoRestController;
+import boredgame.rest.UserAccountRestController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +26,9 @@ import static com.google.common.collect.Lists.newArrayList;
 @Configuration
 @EnableSwagger2
 @ComponentScan(basePackageClasses = {
-        UserAccountController.class
+        UserAccountRestController.class,
+        UnoRestController.class,
+        GameLobbyRestController.class
 })
 public class SwaggerConfig {
 

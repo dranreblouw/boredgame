@@ -1,4 +1,4 @@
-package boredgame.service;
+package boredgame.rest;
 
 import boredgame.domain.uno.internal.UnoGame;
 import boredgame.repository.UnoGameRepository;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/game/uno")
-public class UnoController {
+public class UnoRestController extends AbstractRestController {
 
     @Autowired
     private UnoGameRepository unoGameRepository;
